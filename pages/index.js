@@ -2,7 +2,7 @@ import Head from 'next/head'
 import {useState} from "react"
 import Header from '../components/molecule/Header'
 import AreaButtonList from '../components/molecule/AreaButtonList';
-import PopulationGraph from '../components/molecule/PopulationGrapth';
+import PopulationGraph from '../components/molecule/PopulationGraph';
 
 const apikey = process.env.NEXT_PUBLIC_RESASAPI
 
