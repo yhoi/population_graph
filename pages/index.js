@@ -2,11 +2,12 @@ import Head from 'next/head'
 import {useState} from "react"
 import Header from '../components/molecule/Header'
 import AreaButtonList from '../components/molecule/AreaButtonList';
+import PopulationGraph from '../components/molecule/PopulationGrapth';
 
 const apikey = process.env.NEXT_PUBLIC_RESASAPI
 
 function Home({ json }) {
-  const [selectNum, setSelectNum ] = useState([])
+  const [populationDataList, setPopulationDataList ] = useState([])
 
   return (
     <div>
@@ -15,8 +16,14 @@ function Home({ json }) {
         <meta name="description" content="都道府県別の総人口推移グラフ" />
       </Head>
       <Header />
-      <AreaButtonList json={json} setSelectNum={setSelectNum} selectNum={selectNum} />
-      <p>{selectNum}</p>
+      <AreaButtonList 
+        json={json} 
+        apikey={apikey}
+        populationDataList={populationDataList}
+        setPopulationDataList={setPopulationDataList}
+      />
+
+      <PopulationGraph populationDataList={populationDataList} />
     </div>
   )
 }

@@ -1,17 +1,24 @@
 import styles from './AreaButton.module.css'
 
+const apikey = process.env.NEXT_PUBLIC_RESASAPI
 export default function AreaButton(props){
-  const {areaName,areaNum,setSelectNum,selectNum} = props;
-  let checked = false
-
-  function setAreaNum(checked){
+  const {areaName,areaNum,populationDataList,setPopulationDataList,apikey } = props;
+  async function setAreaNum(checked){
     if(checked){
       //グラフに追加する値の要素追加
-      setSelectNum([...selectNum,String(areaNum)])
-    }else if(selectNum.indexOf(String(areaNum)!=-1)){
+      let populationData ={areaName:areaName }
+      let url="https://opendata.resas-portal.go.jp/api/v1/population/composition/perYear?&prefCode="+String(areaNum)
+      const res = await fetch(url,{
+        headers: { "X-API-KEY": apikey }
+      })
+      const json = await res.json()
+
+      populationData.population=json.result.data[0]
+      setPopulationDataList([...populationDataList,populationData])  
+    }else{
       //グラフに使わない値の削除
-      let selectList = selectNum.filter((item) => item != String(areaNum))
-      setSelectNum(selectList)
+      const filterList = populationDataList.filter(item => item.areaName != areaName)
+      setPopulationDataList(filterList) 
     }
   }
 
