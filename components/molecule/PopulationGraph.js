@@ -1,22 +1,25 @@
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
+import styles from './PopulationGraph.module.css'
 
 export default function PopulationGraph(props) {
   const { populationDataList } = props;
   console.log(populationDataList)
+  
   let graphDataList = []
-  populationDataList.forEach(element => {
+  //Highchartで使う形式に変換
+  populationDataList.forEach(populationData => {
     let graphData = {}
-    console.log(element)
-    graphData.name = element.areaName
+    graphData.name = populationData.areaName
+
     let elementList = []
-    element.population.data.forEach(element =>
+    populationData.population.data.forEach(element =>
       elementList.push(element.value)
     )
     graphData.data = elementList
+    
     graphDataList.push(graphData)
   });
-  console.log(graphDataList)
 
   const options = {
     title: {
@@ -49,7 +52,7 @@ export default function PopulationGraph(props) {
   }
 
   return (
-    <div>
+    <div className={styles.graph}>
       <HighchartsReact
         highcharts={Highcharts}
         options={options}
