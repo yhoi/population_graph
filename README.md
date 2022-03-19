@@ -11,8 +11,10 @@ https://population-graph-yhoi.vercel.app/
 
 ## 開発方針
 - Atomic Dedesiginに従ってコンポーネントを設計
+  
   資料:https://qiita.com/chika_hoge/items/4b9188bac5e33af2ba01
 - 命名規則
+  
   資料:https://qiita.com/RyosukeSomeya/items/90f8e780b37c53758276
 
 
@@ -20,6 +22,7 @@ https://population-graph-yhoi.vercel.app/
 
 ```bash
 $ git clone https://github.com/yhoi/population_graph.git
+
 $ cd population_graph
 
 # packageをインストール
