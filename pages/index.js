@@ -1,19 +1,22 @@
 import Head from 'next/head'
+import {useState} from "react"
 import Header from '../components/molecule/Header'
 import AreaButtonList from '../components/molecule/AreaButtonList';
 
 const apikey = process.env.NEXT_PUBLIC_RESASAPI
 
 function Home({ json }) {
-  console.log(json)
+  const [selectNum, setSelectNum ] = useState([])
+
   return (
     <div>
       <Head>
         <title>Population Chart</title>
-        <meta name="description" content="" />
+        <meta name="description" content="都道府県別の総人口推移グラフ" />
       </Head>
       <Header />
-      <AreaButtonList json={json} />
+      <AreaButtonList json={json} setSelectNum={setSelectNum} selectNum={selectNum} />
+      <p>{selectNum}</p>
     </div>
   )
 }
